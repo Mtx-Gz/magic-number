@@ -6,27 +6,29 @@ int main()
 { 
     srand(time(NULL));
     int nb_rdm = rand() % 100 + 1;
-    printf("choisir un nombre entre 1 et 100 : ");
     int nb_choisi;
-    scanf("%d", &nb_choisi);
     while (nb_choisi != nb_rdm) 
     {
-        if (nb_choisi < nb_rdm) 
+        printf("choisir un nombre entre 1 et 100 : ");
+        if (scanf("%d", &nb_choisi) != 1) exit(0);
+        
+        else if (nb_choisi < 1 || nb_choisi > 100)
         {
-            printf("C'est plus !!!\n"); 
-            printf("choisir un nombre entre 1 et 100 : ");
-            scanf("%d", &nb_choisi);
+            printf("Le nombre n'est pas dans l'intervalle 1, 100.\n");
+            exit(0);
+        }   
+        else if (nb_choisi < nb_rdm) 
+        {
+            printf("C'est plus que %d\n", nb_choisi);
         }
         else if (nb_choisi > nb_rdm)
         {
-            printf("C'est moins !!!\n");
-            printf("choisir un nombre entre 1 et 100 : ");
-            scanf("%d", &nb_choisi);
+            printf("C'est moins que %d\n", nb_choisi);
         }
-    }
-    if (nb_choisi == nb_rdm) 
-    {
-        printf("Gagné !!!\n");
+        else 
+        {
+            printf("Gagné, le nombre était %d\n", nb_rdm);
+        }
     }
     exit (0);
 }
